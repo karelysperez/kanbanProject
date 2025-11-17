@@ -1,4 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
+import { loadColumnsFromStorage, saveColumnsToStorage, fetchInitialColumns } from "./KanbanStorage";
+
 const KanbanContext = createContext(null);
 
 const initialColumns = {
@@ -9,6 +11,28 @@ const initialColumns = {
 
 export function  KanbanProvider({ children }){
     const [columns, setColumns] = useState(initialColumns);
+
+
+    //initial load
+    useEffect(() => {
+        const stored = loadColumnsFromStorage();
+
+        if (stored !== null) {
+            setColumns(stored);
+            return;
+        }
+
+        fetchInitialColumns(5)
+            .then((mappedColumns) => setColumns(mappedColumns))
+            .catch((error) => {
+                console.error("Error fetching initial todos from dummyjson", error);
+            });
+    }, []);
+
+    //save columns to storage
+    useEffect(() => {
+        saveColumnsToStorage(columns);
+    }, [columns]);
 
     //Add Task
     const addTask = (title) => {
