@@ -43,7 +43,7 @@ export function  KanbanProvider({ children }){
              id: Date.now(),
              title: trimmedTitle,
              description: '',
-             createAt: new Date().toISOString(),
+             createdAt: new Date().toISOString(),
          }
 
          setColumns((prev) => ({
@@ -82,18 +82,19 @@ export function  KanbanProvider({ children }){
             return newColumns;
         });
 
-        const value = {
-            columns,
-            addTask,
-            moveTask,
-        }
-
-        return (
-            <KanbanContext.Provider value={value}>
-                {children}
-            </KanbanContext.Provider>
-        );
     }
+
+    const value = {
+        columns,
+        addTask,
+        moveTask,
+    }
+
+    return (
+        <KanbanContext.Provider value={value}>
+            {children}
+        </KanbanContext.Provider>
+    );
 
 }
 
