@@ -1,21 +1,21 @@
-import {useKanban} from "../../context/KanbanContext.jsx";
-import {NewTaskForm} from "../task/NewTaskForm.jsx";
-import {BoardColumn} from "./BoardColum.jsx";
+import { useKanban } from "../../context/KanbanContext.jsx";
+import { NewTaskForm } from "../task/NewTaskForm.jsx";
+import { BoardColumn } from "./BoardColumn.jsx";
 
 
 export function Board ({ filterTerm}){
     const { columns } = useKanban();
 
-    const normalizeTerm = filterTerm?.trim().toLowerCase();
+    const normalizedTerm = filterTerm?.trim().toLowerCase();
 
     const filterTask = (tasks) => {
-        if (!normalizeTerm) return tasks;
+        if (!normalizedTerm) return tasks;
 
         return tasks.filter((task) => {
-            const title = task.title.toLowerCase() ?? "";
-            const description = task.description.toLowerCase() ?? "";
+            const title = (task.title ?? "").toLowerCase();
+            const description = (task.description ?? "").toLowerCase();
             return (
-                title.includes(normalizeTerm) || description.includes(normalizeTerm)
+                title.includes(normalizedTerm) || description.includes(normalizedTerm)
             );
         });
     }

@@ -11,6 +11,7 @@ const initialColumns = {
 
 export function  KanbanProvider({ children }){
     const [columns, setColumns] = useState(initialColumns);
+    const [initialized, setInitialized] = useState(false);
 
 
     //initial load
@@ -19,20 +20,27 @@ export function  KanbanProvider({ children }){
 
         if (stored !== null) {
             setColumns(stored);
+            setInitialized(true);
             return;
         }
 
         fetchInitialColumns(5)
-            .then((mappedColumns) => setColumns(mappedColumns))
+            .then((mappedColumns) => {
+                setColumns(mappedColumns);
+                setInitialized(true);        // <-- inicializado después del fetch
+            })
             .catch((error) => {
                 console.error("Error fetching initial todos from dummyjson", error);
+                setInitialized(true);
+
             });
     }, []);
 
     //save columns to storage
     useEffect(() => {
+        if (!initialized) return;
         saveColumnsToStorage(columns);
-    }, [columns]);
+    }, [columns, initialized]);
 
     //Add Task
     const addTask = (title) => {
