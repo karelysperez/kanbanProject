@@ -78,7 +78,7 @@ export function  KanbanProvider({ children }){
                         return true;
                     });
                     return [column, filtered];
-                })
+                }),
             );
 
             if (!taskToMove) return prev;
@@ -89,7 +89,6 @@ export function  KanbanProvider({ children }){
             ];
             return newColumns;
         });
-
     }
 
     const value = {

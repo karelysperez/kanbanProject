@@ -32,9 +32,9 @@ export function Board ({ filterTerm}){
             <NewTaskForm />
 
             <div className="board-columns">
-                <BoardColumn title="To Do" tasks={filteredColumns.todo} />
-                <BoardColumn title="In Progress" tasks={filteredColumns.inProgress} />
-                <BoardColumn title="Done" tasks={filteredColumns.done} />
+                <BoardColumn title="To Do" columnKey="todo" tasks={filteredColumns.todo} />
+                <BoardColumn title="In Progress" columnKey="inProgress" tasks={filteredColumns.inProgress} />
+                <BoardColumn title="Done" columnKey="done" tasks={filteredColumns.done} />
             </div>
         </section>
     );

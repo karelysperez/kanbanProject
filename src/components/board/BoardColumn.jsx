@@ -1,4 +1,6 @@
-export function BoardColumn({ title, tasks }) {
+import {TaskCard} from "../task/TaskCard.jsx";
+
+export function BoardColumn({ title, columnKey,tasks }) {
     return (
         <section className="board-column">
             <h2 className="board-column-title">{title}</h2>
@@ -9,7 +11,7 @@ export function BoardColumn({ title, tasks }) {
                     <p className="board-column-empty">No tasks</p>
                 ) : (
                     tasks.map((task) => (
-                        <div key={task.id} className="board-column-task">{task.title}</div> //add <TaskCard task={task} />
+                         <TaskCard key={task.id} task={task} currentColumn={columnKey} />
                     ))
                 )}
             </div>
