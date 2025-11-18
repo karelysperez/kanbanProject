@@ -98,6 +98,7 @@ export function  KanbanProvider({ children }){
 
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useKanban(){
     const ctx = useContext(KanbanContext);
 

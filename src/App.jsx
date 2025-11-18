@@ -1,14 +1,16 @@
 import './App.css'
-import {NewTaskForm} from "./components/task/NewTaskForm.jsx";
+import {Board} from "./components/board/Board.jsx";
+import {useState} from "react";
 
 function App() {
+    const [filterTerm, setFilterTerm] = useState('');
     return (
         <div>
             <h1>Kanban Board</h1>
-            <NewTaskForm />
-            {/*TODO: Here goes SearchFilter and Board*/}
+            {/*TODO: Here goes SearchFilter*/}
+            <Board filterTerm={filterTerm} />
         </div>
-    )
+    );
 }
 
 export default App
