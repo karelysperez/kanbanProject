@@ -52,7 +52,7 @@ export async function fetchInitialColumns(limit = 5){
             createdAt: now,
         };
 
-        if (item.complete){
+        if (item.completed){
             mappedColumns.done.push(task);
         }else{
             mappedColumns.todo.push(task);

@@ -1,4 +1,4 @@
-import { useKanban } from "../../context/KanbanContext.jsx";
+import {useKanban} from "../../context/useKanban.js";
 import { NewTaskForm } from "../task/NewTaskForm.jsx";
 import { BoardColumn } from "./BoardColumn.jsx";
 

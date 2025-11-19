@@ -1,4 +1,4 @@
-import {useKanban} from "../../context/KanbanContext.jsx";
+import {useKanban} from "../../context/useKanban.js";
 
 export function TaskCard({ task, currentColumn}) {
     const {moveTask} = useKanban();

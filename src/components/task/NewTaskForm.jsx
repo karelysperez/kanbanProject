@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {useKanban} from "../../context/KanbanContext.jsx";
+import {useKanban} from "../../context/useKanban.js";
 
 export function NewTaskForm()  {
     const {addTask} = useKanban();

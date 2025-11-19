@@ -1,7 +1,6 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { loadColumnsFromStorage, saveColumnsToStorage, fetchInitialColumns } from "./KanbanStorage";
-
-const KanbanContext = createContext(null);
+import { KanbanContext } from "./useKanban.js";
 
 const initialColumns = {
     todo: [],
@@ -105,14 +104,4 @@ export function  KanbanProvider({ children }){
         </KanbanContext.Provider>
     );
 
-}
-
-// eslint-disable-next-line react-refresh/only-export-components
-export function useKanban(){
-    const ctx = useContext(KanbanContext);
-
-    if (!ctx) {
-        throw new Error('useKanban must be used inside a KanbanProvider');
-    }
-    return ctx;
 }
