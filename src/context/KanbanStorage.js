@@ -1,7 +1,5 @@
 const STORAGE_KEY = 'kanban_columns';
 
-export const STORAGE_KEY_COLUMNS = STORAGE_KEY;
-
 export function loadColumnsFromStorage(){
     try{
         const stored = localStorage.getItem(STORAGE_KEY);
@@ -36,7 +34,7 @@ export function saveColumnsToStorage(columns){
 export async function fetchInitialColumns(limit = 5){
     const response = await fetch(`https://dummyjson.com/todos?limit=${limit}`);
     const data = await response.json();
-    const todos = Array.isArray(data.todos) ? data.todos : [];
+    const todos = Array.isArray(data.todo) ? data.todo : [];
 
     const now = new Date().toISOString();
 
@@ -54,7 +52,7 @@ export async function fetchInitialColumns(limit = 5){
             createdAt: now,
         };
 
-        if (item.completed){
+        if (item.complete){
             mappedColumns.done.push(task);
         }else{
             mappedColumns.todo.push(task);

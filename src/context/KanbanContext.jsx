@@ -10,31 +10,33 @@ const initialColumns = {
 }
 
 export function  KanbanProvider({ children }){
-    const [columns, setColumns] = useState(initialColumns);
-    const [initialized, setInitialized] = useState(false);
+    const [columns, setColumns] = useState(() => {
+        // Try to load from storage first during initialization
+        const stored = loadColumnsFromStorage();
+        return stored !== null ? stored : initialColumns;
+    });
+    const [initialized, setInitialized] = useState(() => {
+        // If we loaded from storage, we're already initialized
+        return loadColumnsFromStorage() !== null;
+    });
 
 
     //initial load
     useEffect(() => {
-        const stored = loadColumnsFromStorage();
-
-        if (stored !== null) {
-            setColumns(stored);
-            setInitialized(true);
-            return;
-        }
+        // Only fetch if not already initialized (i.e., nothing in storage)
+        if (initialized) return;
 
         fetchInitialColumns(5)
             .then((mappedColumns) => {
                 setColumns(mappedColumns);
-                setInitialized(true);        // <-- inicializado después del fetch
+                setInitialized(true);        // <-- initialized after fetch
             })
             .catch((error) => {
                 console.error("Error fetching initial todos from dummyjson", error);
                 setInitialized(true);
 
             });
-    }, []);
+    }, [initialized]);
 
     //save columns to storage
     useEffect(() => {
