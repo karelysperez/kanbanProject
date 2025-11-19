@@ -34,7 +34,7 @@ export function saveColumnsToStorage(columns){
 export async function fetchInitialColumns(limit = 5){
     const response = await fetch(`https://dummyjson.com/todos?limit=${limit}`);
     const data = await response.json();
-    const todos = Array.isArray(data.todo) ? data.todo : [];
+    const todos = Array.isArray(data.todos) ? data.todos : [];
 
     const now = new Date().toISOString();
 
