@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {useKanban} from "../../context/useKanban.js";
 
-export function NewTaskForm()  {
+export function NewTaskForm({ onTaskAdded })  {
     const {addTask} = useKanban();
     const [title, setTitle] = useState('');
 
@@ -13,6 +13,11 @@ export function NewTaskForm()  {
 
         addTask(trimmed);
         setTitle('');
+        
+        // Call the callback if provided
+        if (onTaskAdded) {
+            onTaskAdded();
+        }
     }
 
     const handleChange = (event) => {
