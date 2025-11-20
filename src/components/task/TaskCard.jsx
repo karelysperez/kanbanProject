@@ -1,4 +1,5 @@
 import {useKanban} from "../../context/useKanban.js";
+import './taskCard.css';
 
 export function TaskCard({ task, currentColumn}) {
     const {moveTask} = useKanban();
@@ -11,7 +12,7 @@ export function TaskCard({ task, currentColumn}) {
     const formattedDate = task.createdAt ? new Date(task.createdAt).toLocaleDateString() : "";
 
     return (
-        <article className="task-card">
+        <article className={`task-card task-card--${currentColumn}`}>
             <h3 className="task-card-title">{task.title}</h3>
 
             {formattedDate && (<small className="task-card-date">Created: {formattedDate}</small>)}

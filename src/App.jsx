@@ -5,11 +5,24 @@ import {useState} from "react";
 function App() {
     const [filterTerm, setFilterTerm] = useState('');
     return (
-        <div>
-            <h1>Kanban Board</h1>
-            {/*TODO: Here goes SearchFilter*/}
+        <main className="app">
+            <header className="app-header">
+                <h1>Kanban Board</h1>
+
+                <div className="app-header-actions">
+                    <input
+                    className="search-input"
+                    type="text"
+                    placeholder="Search tasks..."
+                    value={filterTerm}
+                    onChange={(event) => setFilterTerm(event.target.value)}
+                    />
+                    <button className="search-button">Search</button>
+                </div>
+            </header>
+
             <Board filterTerm={filterTerm} />
-        </div>
+        </main>
     );
 }
 

@@ -1,0 +1,49 @@
+.board {
+    position: relative;
+}
+
+/* Columns layout */
+.board-columns {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* Container for New Task (bottom-left card) */
+.new-task-div {
+    position: absolute;
+    left: 0;
+    bottom: -110px; /* makes the card float like in the mockup */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* “Create New Task” link-like button */
+.new-task-toggle-btn {
+    align-self: flex-start;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s ease, transform 0.08s ease,
+    box-shadow 0.08s ease;
+    margin-bottom: 50px;
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 900px) {
+    .board-columns {
+        flex-direction: column;
+    }
+
+    .new-task-div {
+        position: static;
+        margin-top: 24px;
+    }
+}

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import {useKanban} from "../../context/useKanban.js";
+import './newTaskForm.css';
 
-export function NewTaskForm({ onTaskAdded })  {
+export function NewTaskForm({ onTaskAdded, onCancel })  {
     const {addTask} = useKanban();
     const [title, setTitle] = useState('');
 
@@ -13,7 +14,7 @@ export function NewTaskForm({ onTaskAdded })  {
 
         addTask(trimmed);
         setTitle('');
-        
+    
         // Call the callback if provided
         if (onTaskAdded) {
             onTaskAdded();
@@ -34,7 +35,10 @@ export function NewTaskForm({ onTaskAdded })  {
                 value={title}
                 onChange={handleChange}
             />
-            <button type="submit" disabled={!title.trim()}>Add</button>
+            <div className="form-buttons">
+                <div className="add-button" onClick={handleSubmit}>Add Task</div>
+                <div className="cancel-button" onClick={onCancel}>Cancel</div>
+            </div>
         </form>
     );
 }

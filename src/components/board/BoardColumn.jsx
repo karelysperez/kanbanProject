@@ -1,4 +1,5 @@
 import {TaskCard} from "../task/TaskCard.jsx";
+import "./boardColumn.css";
 
 export function BoardColumn({ title, columnKey,tasks }) {
     return (

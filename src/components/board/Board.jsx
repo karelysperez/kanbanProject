@@ -2,6 +2,7 @@ import {useKanban} from "../../context/useKanban.js";
 import { NewTaskForm } from "../task/NewTaskForm.jsx";
 import { BoardColumn } from "./BoardColumn.jsx";
 import { useState } from "react";
+import "./board.css";
 
 export function Board ({ filterTerm}){
     const { columns } = useKanban();
@@ -36,16 +37,23 @@ export function Board ({ filterTerm}){
             </div>
 
             <div className="new-task-div">
-                {/* Toggle button for new task form */}
-                <button
-                    className="new-task-toggle-btn"
-                    onClick={() => setShowNewTaskForm(!showNewTaskForm)}
-                >
-                    {showNewTaskForm ? 'Cancel' : 'New Task'}
-                </button>
+                {/* Toggle button for the new task form */}
+                {!showNewTaskForm && (
+                    <button
+                        className="new-task-toggle-btn"
+                        onClick={() => setShowNewTaskForm(true)}
+                    >
+                        New Task
+                    </button>
+                )}
 
                 {/* Conditionally render the form */}
-                {showNewTaskForm && <NewTaskForm onTaskAdded={() => setShowNewTaskForm(false)} />}
+                {showNewTaskForm && (
+                    <NewTaskForm
+                        onTaskAdded={() => setShowNewTaskForm(false)}
+                        onCancel={() => setShowNewTaskForm(false)}
+                    />
+                )}
             </div>
         </section>
     );
