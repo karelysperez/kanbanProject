@@ -1,6 +1,7 @@
 import './App.css'
 import {Board} from "./components/board/Board.jsx";
 import {useState} from "react";
+import {SearchFilter} from "./components/searchFilter/SearchFilter.jsx";
 
 function App() {
     const [filterTerm, setFilterTerm] = useState('');
@@ -10,14 +11,7 @@ function App() {
                 <h1>Kanban Board</h1>
 
                 <div className="app-header-actions">
-                    <input
-                    className="search-input"
-                    type="text"
-                    placeholder="Search tasks..."
-                    value={filterTerm}
-                    onChange={(event) => setFilterTerm(event.target.value)}
-                    />
-                    <button className="search-button">Search</button>
+                    <SearchFilter onFilterChange={setFilterTerm} />
                 </div>
             </header>
 
