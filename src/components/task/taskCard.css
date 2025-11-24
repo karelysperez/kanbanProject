@@ -9,6 +9,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
+    position: relative;
 }
 
 /* Colored borders per column (like blue / orange / green cards) */
@@ -67,4 +68,21 @@
 .task-card-controls button:active {
     box-shadow: none;
     transform: translateY(0);
+}
+
+/* Edit button */
+.task-card-edit-btn {     
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.70rem;
+    background: #f4f8fb;
+    color: #6b7280;
+    cursor: pointer;     
+    transition: background 0.15s ease, color 0.15s ease;
+    border: 1px dashed #cbd5e1;  
+}
+
+.task-card-edit-btn:hover {
+    background: #f3f4f6;
+    color: #374151;
 }

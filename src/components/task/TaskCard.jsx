@@ -2,7 +2,7 @@ import {useKanban} from "../../context/useKanban.js";
 import './taskCard.css';
 
 export function TaskCard({ task, currentColumn}) {
-    const {moveTask} = useKanban();
+    const {moveTask, editTask} = useKanban();
 
     const handleMove = (destinationColumn) => {
         if (destinationColumn === currentColumn) return;
@@ -14,6 +14,10 @@ export function TaskCard({ task, currentColumn}) {
     return (
         <article className={`task-card task-card--${currentColumn}`}>
             <h3 className="task-card-title">{task.title}</h3>
+
+             <button className= "task-card-edit-btn" onClick={() => editTask(task.id, { title: prompt("Edit task title:", task.title) || task.title })}>
+                Edit task
+            </button>
 
             {formattedDate && (<small className="task-card-date">Created: {formattedDate}</small>)}
 
