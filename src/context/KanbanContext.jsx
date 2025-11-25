@@ -92,10 +92,25 @@ export function  KanbanProvider({ children }){
         });
     }
 
+    // New feature: allows editing an existing task
+   const editTask = (taskId, updatedFields) => {
+        setColumns((prev) => {
+            const newColumns = {};
+
+            for (const column in prev) {
+                newColumns[column] = prev[column].map((task) =>
+                    task.id === taskId ? { ...task, ...updatedFields } : task
+                );
+            }
+            return newColumns;
+        });
+    };
+
     const value = {
         columns,
         addTask,
         moveTask,
+        editTask
     }
 
     return (
@@ -103,5 +118,4 @@ export function  KanbanProvider({ children }){
             {children}
         </KanbanContext.Provider>
     );
-
 }
